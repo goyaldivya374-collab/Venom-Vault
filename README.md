@@ -9,7 +9,7 @@ A modern and responsive gaming website designed for gamers to explore game trail
 📱 Fully responsive design
 🖼️ Modern gaming UI
 📩 Contact section
-🚀 Smooth navigation and animations
+🚀 Smooth navigation and animation
 
 🛠️ Tech Stack
 HTML5
