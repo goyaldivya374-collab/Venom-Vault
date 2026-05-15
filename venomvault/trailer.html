@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VenomVault – Trailers</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="trailer.css">
+</head>
+<body>
+
+<!-- ── NAVBAR ── -->
+<nav>
+  <a href="home.html" class="nav-logo">🎮 Venom<span>Vault</span></a>
+  <a href="home.html" class="back-btn">← Back to Home</a>
+</nav>
+
+<!-- ── HERO ── -->
+<div class="hero-trailer">
+  <div class="page-badge">🔴 NOW PLAYING</div>
+  <h1 class="page-title">GAME <span>TRAILERS</span></h1>
+  <p class="page-sub">Watch epic trailers for VenomVault's most thrilling games.</p>
+
+  <div class="featured-trailer" onclick="openTrailer('featured')">
+    <div class="featured-thumb" style="background:linear-gradient(135deg,#0a1628,#1a0a28,#050a0e)">
+      <div class="big-icon">🔫</div>
+      <div style="position:absolute;bottom:24px;left:28px;text-align:left;z-index:2;">
+        <div style="font-family:'Orbitron',monospace;font-size:1.6rem;color:#fff;font-weight:900;text-shadow:0 0 20px rgba(0,255,231,0.5);">SHADOW PROTOCOL</div>
+        <div style="color:var(--neon);font-size:0.85rem;letter-spacing:2px;margin-top:4px;">SEASON 3 – OFFICIAL TRAILER</div>
+      </div>
+      <div class="play-overlay">
+        <div class="play-btn-big">▶</div>
+        <div class="play-label">PLAY TRAILER</div>
+      </div>
+    </div>
+    <div class="featured-info">
+      <div>
+        <div class="fi-title">SHADOW PROTOCOL: SEASON 3</div>
+        <div class="fi-meta">Action / Shooter &nbsp;•&nbsp; 4K Ultra HD</div>
+      </div>
+      <div class="fi-badge">🔥 FEATURED</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── ALL TRAILERS GRID ── -->
+<section class="trailers-section">
+  <h2 class="s-title">ALL <span>TRAILERS</span></h2>
+  <div class="trailers-grid">
+
+    <div class="trailer-card" onclick="openTrailer('mythic')">
+      <div class="t-thumb" style="background:linear-gradient(135deg,#1a0a28,#2a1a4a)">🧙
+        <div class="t-play"><div class="t-play-icon">▶</div></div>
+      </div>
+      <div class="t-info">
+        <div class="t-name">MYTHIC REALM</div>
+        <div class="t-meta"><span class="t-genre">RPG / Adventure</span><span class="t-duration">2:58</span></div>
+      </div>
+    </div>
+
+    <div class="trailer-card" onclick="openTrailer('quantum')">
+      <div class="t-thumb" style="background:linear-gradient(135deg,#0a2818,#1a4a2a)">🧩
+        <div class="t-play"><div class="t-play-icon">▶</div></div>
+      </div>
+      <div class="t-info">
+        <div class="t-name">QUANTUM GRID</div>
+        <div class="t-meta"><span class="t-genre">Puzzle / Strategy</span><span class="t-duration">1:45</span></div>
+      </div>
+    </div>
+
+    <div class="trailer-card" onclick="openTrailer('turbo')">
+      <div class="t-thumb" style="background:linear-gradient(135deg,#281a0a,#4a2a1a)">🚗
+        <div class="t-play"><div class="t-play-icon">▶</div></div>
+      </div>
+      <div class="t-info">
+        <div class="t-name">TURBO CLASH</div>
+        <div class="t-meta"><span class="t-genre">Racing / Sports</span><span class="t-duration">2:22</span></div>
+      </div>
+    </div>
+
+    <div class="trailer-card" onclick="openTrailer('dark')">
+      <div class="t-thumb" style="background:linear-gradient(135deg,#280a0a,#4a1a1a)">👻
+        <div class="t-play"><div class="t-play-icon">▶</div></div>
+      </div>
+      <div class="t-info">
+        <div class="t-name">DARK DESCENT</div>
+        <div class="t-meta"><span class="t-genre">Horror / Survival</span><span class="t-duration">3:15</span></div>
+      </div>
+    </div>
+
+    <div class="trailer-card" onclick="openTrailer('nebula')">
+      <div class="t-thumb" style="background:linear-gradient(135deg,#0a0a28,#1a1a4a)">🌌
+        <div class="t-play"><div class="t-play-icon">▶</div></div>
+      </div>
+      <div class="t-info">
+        <div class="t-name">NEBULA ASSAULT</div>
+        <div class="t-meta"><span class="t-genre">Battle Royale</span><span class="t-duration">4:02</span></div>
+      </div>
+    </div>
+
+    <div class="trailer-card" onclick="openTrailer('cyber')">
+      <div class="t-thumb" style="background:linear-gradient(135deg,#0a2028,#1a3a4a)">⚡
+        <div class="t-play"><div class="t-play-icon">▶</div></div>
+      </div>
+      <div class="t-info">
+        <div class="t-name">CYBER STRIKE</div>
+        <div class="t-meta"><span class="t-genre">MOBA</span><span class="t-duration">3:30</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── VIDEO MODAL ── -->
+<div class="v-modal" id="vModal">
+  <div class="v-content">
+    <div class="v-header">
+      <div class="v-title" id="modalTitle">SHADOW PROTOCOL</div>
+      <button class="v-close" onclick="closeModal()">✕</button>
+    </div>
+    <div id="modalVideoWrap" class="v-video-wrap"></div>
+    <div class="v-progress" id="vProgressBar" style="display:none;">
+      <div class="v-prog-fill" id="progFill"></div>
+    </div>
+    <div class="v-controls">
+      <button class="vc-btn" onclick="closeModal()">✕ Close</button>
+      <div class="vc-time" id="modalMeta">HD • 60fps</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="f-logo">🎮 VENOM<span style="color:#fff">VAULT</span></div>
+  <a href="home.html">Home</a>
+  <a href="games.html">Games</a>
+  <a href="contact.html">Contact</a>
+  <div style="margin-top:12px;">© 2025 VenomVault Gaming Platform</div>
+</footer>
+
+<script src="trailer.js"></script>
+</body>
+</html>

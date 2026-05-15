@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VenomVault – About</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  :root{--neon:#00ffe7;--neon2:#ff3c78;--dark:#050a0e;--card:#0d1b2a;--border:rgba(0,255,231,0.15);--text:#c8d8e8;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--dark);font-family:'Rajdhani',sans-serif;color:var(--text);}
+  body::before{content:'';position:fixed;inset:0;background:linear-gradient(rgba(0,255,231,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(0,255,231,0.025) 1px,transparent 1px);background-size:40px 40px;animation:gridMove 25s linear infinite;pointer-events:none;z-index:0;}
+  @keyframes gridMove{from{background-position:0 0;}to{background-position:40px 40px;}}
+  ::-webkit-scrollbar{width:5px;} ::-webkit-scrollbar-thumb{background:var(--neon);}
+
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(5,10,14,0.9);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:66px;}
+  .nav-logo{font-family:'Orbitron',monospace;font-size:1.3rem;font-weight:900;color:#fff;letter-spacing:3px;text-decoration:none;}
+  .nav-logo span{color:var(--neon);}
+  .back-btn{background:rgba(0,255,231,0.08);border:1px solid var(--border);border-radius:8px;color:var(--neon);font-size:0.85rem;letter-spacing:1px;padding:9px 18px;text-decoration:none;transition:all 0.3s;}
+  .back-btn:hover{background:rgba(0,255,231,0.15);}
+
+  .page-hero{min-height:70vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:100px 40px 60px;text-align:center;position:relative;z-index:1;}
+  .hero-glow{position:absolute;top:40%;left:50%;transform:translate(-50%,-50%);width:600px;height:300px;background:radial-gradient(ellipse,rgba(0,255,231,0.07) 0%,transparent 70%);pointer-events:none;}
+  .page-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(0,255,231,0.08);border:1px solid rgba(0,255,231,0.2);border-radius:30px;padding:7px 18px;font-size:0.78rem;letter-spacing:2px;color:var(--neon);margin-bottom:20px;}
+  .page-title{font-family:'Orbitron',monospace;font-size:clamp(2.2rem,7vw,5rem);font-weight:900;color:#fff;margin-bottom:20px;line-height:1.05;}
+  .page-title span{color:var(--neon);text-shadow:0 0 30px rgba(0,255,231,0.4);}
+  .page-sub{color:rgba(200,216,232,0.55);font-size:1.05rem;max-width:560px;line-height:1.7;}
+
+  .mission-section{max-width:900px;margin:0 auto;padding:0 40px 80px;position:relative;z-index:1;}
+  .mission-card{background:linear-gradient(135deg,rgba(0,255,231,0.05) 0%,var(--card) 60%);border:1px solid rgba(0,255,231,0.2);border-radius:24px;padding:50px;text-align:center;box-shadow:0 0 60px rgba(0,255,231,0.07);}
+  .mission-icon{font-size:60px;margin-bottom:20px;filter:drop-shadow(0 0 20px rgba(0,255,231,0.4));}
+  .mission-title{font-family:'Orbitron',monospace;font-size:1.3rem;color:var(--neon);margin-bottom:16px;letter-spacing:2px;}
+  .mission-text{color:rgba(200,216,232,0.6);font-size:1rem;line-height:1.8;max-width:640px;margin:0 auto;}
+
+  .timeline-section{max-width:900px;margin:0 auto;padding:0 40px 80px;position:relative;z-index:1;}
+  .tl-title{font-family:'Orbitron',monospace;font-size:1.4rem;color:#fff;margin-bottom:40px;text-align:center;}
+  .tl-title span{color:var(--neon);}
+  .timeline{position:relative;padding-left:30px;}
+  .timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(180deg,var(--neon),rgba(0,255,231,0.1));}
+  .tl-item{position:relative;margin-bottom:40px;padding-left:36px;}
+  .tl-dot{position:absolute;left:-34px;top:4px;width:14px;height:14px;border-radius:50%;background:var(--neon);box-shadow:0 0 12px rgba(0,255,231,0.5);border:2px solid var(--dark);}
+  .tl-date{font-family:'Orbitron',monospace;font-size:0.72rem;letter-spacing:2px;color:var(--neon);margin-bottom:6px;}
+  .tl-event{font-family:'Orbitron',monospace;font-size:0.95rem;color:#fff;margin-bottom:6px;font-weight:700;}
+  .tl-desc{font-size:0.88rem;color:rgba(200,216,232,0.5);line-height:1.6;}
+
+  .values-section{max-width:1100px;margin:0 auto;padding:0 40px 80px;position:relative;z-index:1;}
+  .vs-title{font-family:'Orbitron',monospace;font-size:1.4rem;color:#fff;margin-bottom:32px;text-align:center;}
+  .vs-title span{color:var(--neon);}
+  .values-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:20px;}
+  .v-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px 22px;text-align:center;transition:all 0.3s;}
+  .v-card:hover{border-color:var(--neon);transform:translateY(-5px);box-shadow:0 20px 40px rgba(0,0,0,0.4),0 0 20px rgba(0,255,231,0.07);}
+  .v-icon{font-size:38px;margin-bottom:14px;display:block;}
+  .v-name{font-family:'Orbitron',monospace;font-size:0.85rem;color:#fff;margin-bottom:10px;font-weight:700;}
+  .v-text{font-size:0.83rem;color:rgba(200,216,232,0.45);line-height:1.6;}
+
+  /* ========== TEAM SECTION ========== */
+  .team-section{max-width:1100px;margin:0 auto;padding:0 40px 80px;position:relative;z-index:1;}
+  .team-title{font-family:'Orbitron',monospace;font-size:1.4rem;color:#fff;margin-bottom:32px;text-align:center;}
+  .team-title span{color:var(--neon);}
+  .team-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:20px;}
+  .team-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px 20px;text-align:center;transition:all 0.3s;cursor:pointer;}
+  .team-card:hover{border-color:var(--neon);transform:translateY(-6px);box-shadow:0 20px 40px rgba(0,0,0,0.5),0 0 20px rgba(0,255,231,0.1);}
+  .team-avatar{width:70px;height:70px;border-radius:50%;margin:0 auto 14px;display:flex;align-items:center;justify-content:center;font-size:32px;border:2px solid rgba(0,255,231,0.2);transition:border-color 0.3s;}
+  .team-card:hover .team-avatar{border-color:rgba(0,255,231,0.7);}
+  .team-name{font-family:'Orbitron',monospace;font-size:0.8rem;color:#fff;margin-bottom:4px;font-weight:700;}
+  .team-role{font-size:0.74rem;color:rgba(200,216,232,0.45);letter-spacing:1px;}
+  .view-hint{margin-top:10px;font-size:0.7rem;color:rgba(0,255,231,0.45);letter-spacing:1px;opacity:0;transition:opacity 0.3s;}
+  .team-card:hover .view-hint{opacity:1;}
+
+  /* ========== OVERLAY ========== */
+  .overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.75);backdrop-filter:blur(6px);z-index:999;align-items:center;justify-content:center;padding:20px;}
+  .overlay.active{display:flex;}
+
+  /* ========== MODAL ========== */
+  .modal{background:linear-gradient(135deg,rgba(0,255,231,0.05) 0%,#0d1b2a 60%);border:1px solid rgba(0,255,231,0.3);border-radius:24px;padding:40px 36px;max-width:480px;width:100%;position:relative;box-shadow:0 0 80px rgba(0,255,231,0.1),0 40px 60px rgba(0,0,0,0.6);animation:popIn 0.3s ease;}
+  @keyframes popIn{from{transform:scale(0.85);opacity:0;}to{transform:scale(1);opacity:1;}}
+  .close-btn{position:absolute;top:16px;right:18px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:8px;color:#fff;font-size:1.1rem;width:32px;height:32px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.2s;}
+  .close-btn:hover{background:rgba(255,60,120,0.2);border-color:var(--neon2);color:var(--neon2);}
+  .modal-avatar{width:90px;height:90px;border-radius:50%;margin:0 auto 16px;display:flex;align-items:center;justify-content:center;font-size:42px;border:3px solid rgba(0,255,231,0.3);box-shadow:0 0 24px rgba(0,255,231,0.15);}
+  .modal-name{font-family:'Orbitron',monospace;font-size:1.1rem;color:#fff;text-align:center;margin-bottom:4px;font-weight:900;}
+  .modal-role{font-size:0.82rem;color:var(--neon);text-align:center;letter-spacing:2px;margin-bottom:24px;}
+  .modal-divider{height:1px;background:rgba(0,255,231,0.12);margin-bottom:22px;}
+  .modal-bio{font-size:0.92rem;color:rgba(200,216,232,0.6);line-height:1.75;margin-bottom:22px;text-align:center;}
+  .modal-stats{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:22px;}
+  .ms-item{background:rgba(0,255,231,0.04);border:1px solid rgba(0,255,231,0.1);border-radius:12px;padding:14px;text-align:center;}
+  .ms-val{font-family:'Orbitron',monospace;font-size:1rem;color:var(--neon);font-weight:700;}
+  .ms-label{font-size:0.72rem;color:rgba(200,216,232,0.35);letter-spacing:1.5px;margin-top:4px;}
+  .modal-skills{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;}
+  .skill-chip{background:rgba(0,255,231,0.07);border:1px solid rgba(0,255,231,0.18);border-radius:8px;padding:6px 12px;font-size:0.76rem;color:rgba(200,216,232,0.7);}
+
+  .tech-section{max-width:900px;margin:0 auto;padding:0 40px 80px;position:relative;z-index:1;}
+  .tech-title{font-family:'Orbitron',monospace;font-size:1.2rem;color:#fff;margin-bottom:24px;text-align:center;}
+  .tech-title span{color:var(--neon);}
+  .tech-chips{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;}
+  .tech-chip{background:rgba(0,255,231,0.06);border:1px solid rgba(0,255,231,0.15);border-radius:10px;padding:12px 20px;font-size:0.88rem;color:var(--text);font-weight:600;display:flex;align-items:center;gap:8px;transition:all 0.2s;}
+  .tech-chip:hover{border-color:var(--neon);color:var(--neon);}
+
+  .stats-strip{background:rgba(0,255,231,0.03);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:40px;display:flex;justify-content:center;gap:60px;flex-wrap:wrap;position:relative;z-index:1;margin-bottom:60px;}
+  .ss-item{text-align:center;}
+  .ss-val{font-family:'Orbitron',monospace;font-size:1.8rem;color:var(--neon);font-weight:900;}
+  .ss-label{font-size:0.75rem;color:rgba(200,216,232,0.35);letter-spacing:2px;margin-top:4px;}
+
+  footer{background:rgba(5,10,14,0.95);border-top:1px solid var(--border);padding:30px 40px;text-align:center;font-size:0.82rem;color:rgba(200,216,232,0.3);position:relative;z-index:1;}
+  .f-logo{font-family:'Orbitron',monospace;color:var(--neon);font-size:1rem;letter-spacing:3px;margin-bottom:10px;}
+  footer a{color:rgba(200,216,232,0.4);text-decoration:none;margin:0 10px;}
+
+  @media(max-width:768px){
+    .mission-section,.timeline-section,.values-section,.team-section,.tech-section{padding-left:16px;padding-right:16px;}
+    .mission-card{padding:28px;}
+    .stats-strip{gap:28px;}
+    .modal{padding:28px 20px;}
+  }
+</style>
+</head>
+<body>
+<nav>
+  <a href="home.html" class="nav-logo">🎮 Venom<span>Vault</span></a>
+  <a href="home.html" class="back-btn">← Home</a>
+</nav>
+
+<div class="page-hero">
+  <div class="hero-glow"></div>
+  <div class="page-badge">🏛️ OUR STORY</div>
+  <h1 class="page-title">ABOUT<br><span>VENOMVAULT</span></h1>
+  <p class="page-sub">Born from a love of gaming, built for the world's players. This is the story of how VenomVault became the ultimate gaming vault.</p>
+</div>
+
+<!-- MISSION -->
+<div class="mission-section">
+  <div class="mission-card">
+    <div class="mission-icon">🐍</div>
+    <div class="mission-title">OUR MISSION</div>
+    <div class="mission-text">
+      VenomVault exists to break the barriers between players. We believe every gamer — regardless of skill, background, or device — deserves a world-class gaming experience. Our platform delivers personalised games, fair competition, and real rewards to players across the globe. Gaming is not just entertainment. It's a culture, a community, and a craft. We're here to honour that.
+    </div>
+  </div>
+</div>
+
+<!-- TIMELINE -->
+<div class="timeline-section">
+  <h2 class="tl-title">THE <span>VAULT TIMELINE</span></h2>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-date">JANUARY 2023</div>
+      <div class="tl-event">🌱 THE IDEA IS BORN</div>
+      <div class="tl-desc">Developer Arjun Sharma sketches the first concept for VenomVault — a personalised gaming hub with a built-in rewards economy. Started as a college project with big ambitions.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-date">JUNE 2023</div>
+      <div class="tl-event">🛠️ FIRST BUILD</div>
+      <div class="tl-desc">The first prototype goes live with 3 games and a basic login system. Early testers give overwhelmingly positive feedback on the personalisation quiz and VaultCoin concept.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-date">NOVEMBER 2023</div>
+      <div class="tl-event">🚀 BETA LAUNCH</div>
+      <div class="tl-desc">VenomVault enters public beta with 12 games, tournament support, and the full VaultCoin economy. 10,000 players join within the first month. Anti-cheat system deployed.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-date">MARCH 2024</div>
+      <div class="tl-event">⭐ V1.0 OFFICIAL RELEASE</div>
+      <div class="tl-desc">Full public launch. 48 games available across 6 genres. Live leaderboards, global tournaments, and the Vault Rank system go live. Player count hits 500,000.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-date">JANUARY 2025</div>
+      <div class="tl-event">🏆 1 MILLION PLAYERS</div>
+      <div class="tl-desc">VenomVault crosses 1 million registered players across 50+ countries. Shadow Protocol becomes the platform's first mega-hit title with 200,000+ daily active users.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot" style="background:var(--neon2);box-shadow:0 0 12px rgba(255,60,120,0.5);"></div>
+      <div class="tl-date">MAY 2025 — NOW</div>
+      <div class="tl-event">🌍 GLOBAL EXPANSION</div>
+      <div class="tl-desc">VenomVault launches dedicated servers in 12 regions worldwide, introduces mobile support, and begins partnerships with indie game developers. Season 3 of Shadow Protocol breaks all records.</div>
+    </div>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats-strip">
+  <div class="ss-item"><div class="ss-val">2023</div><div class="ss-label">FOUNDED</div></div>
+  <div class="ss-item"><div class="ss-val">1.2M+</div><div class="ss-label">PLAYERS</div></div>
+  <div class="ss-item"><div class="ss-val">48</div><div class="ss-label">GAMES</div></div>
+  <div class="ss-item"><div class="ss-val">50+</div><div class="ss-label">COUNTRIES</div></div>
+  <div class="ss-item"><div class="ss-val">12</div><div class="ss-label">SERVER REGIONS</div></div>
+</div>
+
+<!-- VALUES -->
+<div class="values-section">
+  <h2 class="vs-title">OUR <span>VALUES</span></h2>
+  <div class="values-grid">
+    <div class="v-card"><span class="v-icon">⚖️</span><div class="v-name">FAIR PLAY</div><div class="v-text">Zero tolerance for cheating. Every match is monitored. Every player deserves a fair arena.</div></div>
+    <div class="v-card"><span class="v-icon">🌍</span><div class="v-name">INCLUSIVITY</div><div class="v-text">Gaming is for everyone. We welcome players of all backgrounds, skill levels, and abilities.</div></div>
+    <div class="v-card"><span class="v-icon">🔒</span><div class="v-name">PRIVACY</div><div class="v-text">Your data stays yours. No advertising brokers. No data selling. Ever. Full stop.</div></div>
+    <div class="v-card"><span class="v-icon">💡</span><div class="v-name">INNOVATION</div><div class="v-text">We ship new features every month based on community feedback. You shape the platform.</div></div>
+    <div class="v-card"><span class="v-icon">🤝</span><div class="v-name">COMMUNITY</div><div class="v-text">Players aren't users — they're members of the Vault. We build with them, not just for them.</div></div>
+    <div class="v-card"><span class="v-icon">⚡</span><div class="v-name">PERFORMANCE</div><div class="v-text">Sub-30ms ping globally. 99.9% uptime. We obsess over speed so you never lag at the wrong moment.</div></div>
+  </div>
+</div>
+
+<!-- TEAM -->
+<div class="team-section">
+  <h2 class="team-title">MEET THE <span>TEAM</span></h2>
+  <div class="team-grid" id="teamGrid"></div>
+</div>
+
+<!-- OVERLAY + MODAL -->
+<div class="overlay" id="overlay" onclick="closeModal(event)">
+  <div class="modal" id="modal">
+    <button class="close-btn" onclick="closeModal(null, true)">✕</button>
+    <div class="modal-avatar" id="mAvatar"></div>
+    <div class="modal-name" id="mName"></div>
+    <div class="modal-role" id="mRole"></div>
+    <div class="modal-divider"></div>
+    <div class="modal-bio" id="mBio"></div>
+    <div class="modal-stats" id="mStats"></div>
+    <div class="modal-skills" id="mSkills"></div>
+  </div>
+</div>
+
+<!-- TECH STACK -->
+<div class="tech-section">
+  <h2 class="tech-title">BUILT WITH <span>TECHNOLOGY</span></h2>
+  <div class="tech-chips">
+    <div class="tech-chip">🌐 HTML5</div>
+    <div class="tech-chip">🎨 CSS3</div>
+    <div class="tech-chip">⚡ JavaScript</div>
+    <div class="tech-chip">🟢 Node.js</div>
+    <div class="tech-chip">🗄️ MongoDB</div>
+    <div class="tech-chip">☁️ Cloud Servers</div>
+    <div class="tech-chip">🔒 SSL Encryption</div>
+    <div class="tech-chip">🛡️ Anti-Cheat AI</div>
+  </div>
+</div>
+
+<footer>
+  <div class="f-logo">🎮 VENOM<span style="color:#fff">VAULT</span></div>
+  <a href="home.html">Home</a><a href="games.html">Games</a><a href="features.html">Features</a><a href="contact.html">Contact</a>
+  <div style="margin-top:12px;">© 2025 VenomVault Gaming Platform. Founded 2023 · Punjab, India 🇮🇳</div>
+</footer>
+
+<script>
+  const team = [
+    {
+      emoji:"👨‍💻",
+      bg:"linear-gradient(135deg,#0a1628,#1a0a28)",
+      name:"Arjun Sharma",
+      role:"Founder & Lead Dev",
+      bio:"The brain behind VenomVault. Arjun laid the foundation of this platform in 2023 as a college project. With 6+ years of experience in full-stack development and game architecture, he turned a bold idea into a platform loved by over 1.2 million players worldwide.",
+      stats:[{val:"6+",label:"YEARS EXP"},{val:"48",label:"GAMES BUILT"},{val:"1.2M",label:"USERS SERVED"},{val:"2023",label:"FOUNDED"}],
+      skills:["JavaScript","Node.js","MongoDB","Game Architecture","System Design"]
+    },
+    {
+      emoji:"👩‍🎨",
+      bg:"linear-gradient(135deg,#1a0a28,#2a1a4a)",
+      name:"Priya Kapoor",
+      role:"UI/UX Designer",
+      bio:"Priya designed the entire visual identity of VenomVault — the neon aesthetic, card layouts, and smooth animations. Her specialties are user research and motion design. She believes great design isn't just about looks, it's about how it feels.",
+      stats:[{val:"200+",label:"SCREENS"},{val:"3",label:"REBRANDS"},{val:"98%",label:"USER RATING"},{val:"5",label:"AWARDS"}],
+      skills:["Figma","CSS3","Motion Design","User Research","Prototyping"]
+    },
+    {
+      emoji:"👨‍🎮",
+      bg:"linear-gradient(135deg,#0a2818,#1a4a2a)",
+      name:"Rohan Mehta",
+      role:"Game Director",
+      bio:"Rohan designs the gameplay loop, difficulty curve, and reward system for every game on the platform. Shadow Protocol is his biggest hit with 200K+ daily users. He believes every game should take the player on an emotional journey.",
+      stats:[{val:"48",label:"GAMES"},{val:"200K",label:"DAILY USERS"},{val:"3",label:"SEASONS"},{val:"15",label:"GENRES TRIED"}],
+      skills:["Game Design","Lua","Unity Concepts","Level Design","Playtesting"]
+    },
+    {
+      emoji:"👩‍💼",
+      bg:"linear-gradient(135deg,#281a0a,#4a2a1a)",
+      name:"Simran Bhatia",
+      role:"Community Manager",
+      bio:"Simran is the voice of VenomVault. She manages Discord, tournaments, player feedback, and ban appeals all on her own. Her job is to bring together a community of 1M+ players and make them feel like one big family.",
+      stats:[{val:"1M+",label:"COMMUNITY"},{val:"50+",label:"COUNTRIES"},{val:"500+",label:"TOURNAMENTS"},{val:"24/7",label:"SUPPORT"}],
+      skills:["Community Building","Discord","Social Media","Event Management","Conflict Resolution"]
+    },
+    {
+      emoji:"👨‍🔧",
+      bg:"linear-gradient(135deg,#0a0a28,#1a1a4a)",
+      name:"Vikram Nair",
+      role:"Backend Engineer",
+      bio:"Without Vikram's servers, VenomVault wouldn't last a second. A 99.9% uptime guarantee, sub-30ms ping across 12 global regions, and the Anti-Cheat AI system — all of it is Vikram's work. He lives by one rule: performance is a feature.",
+      stats:[{val:"99.9%",label:"UPTIME"},{val:"30ms",label:"PING"},{val:"12",label:"REGIONS"},{val:"0",label:"MAJOR OUTAGES"}],
+      skills:["Node.js","MongoDB","Redis","Anti-Cheat AI","Cloud Infrastructure"]
+    }
+  ];
+
+  const grid = document.getElementById('teamGrid');
+
+  team.forEach((m, i) => {
+    const card = document.createElement('div');
+    card.className = 'team-card';
+    card.innerHTML = `
+      <div class="team-avatar" style="background:${m.bg}">${m.emoji}</div>
+      <div class="team-name">${m.name}</div>
+      <div class="team-role">${m.role}</div>
+      <div class="view-hint">▶ VIEW PROFILE</div>
+    `;
+    card.addEventListener('click', () => openModal(i));
+    grid.appendChild(card);
+  });
+
+  function openModal(i) {
+    const m = team[i];
+    document.getElementById('mAvatar').style.background = m.bg;
+    document.getElementById('mAvatar').textContent = m.emoji;
+    document.getElementById('mName').textContent = m.name;
+    document.getElementById('mRole').textContent = m.role;
+    document.getElementById('mBio').textContent = m.bio;
+
+    const statsEl = document.getElementById('mStats');
+    statsEl.innerHTML = m.stats.map(s =>
+      `<div class="ms-item"><div class="ms-val">${s.val}</div><div class="ms-label">${s.label}</div></div>`
+    ).join('');
+
+    const skillsEl = document.getElementById('mSkills');
+    skillsEl.innerHTML = m.skills.map(s => `<span class="skill-chip">${s}</span>`).join('');
+
+    document.getElementById('overlay').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal(e, force) {
+    if (force || (e && e.target === document.getElementById('overlay'))) {
+      document.getElementById('overlay').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeModal(null, true);
+  });
+</script>
+</body>
+</html>

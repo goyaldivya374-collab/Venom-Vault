@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VenomVault – Contact</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  :root{--neon:#00ffe7;--neon2:#ff3c78;--dark:#050a0e;--card:#0d1b2a;--border:rgba(0,255,231,0.15);--text:#c8d8e8;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{background:var(--dark);font-family:'Rajdhani',sans-serif;color:var(--text);}
+  body::before{content:'';position:fixed;inset:0;background:linear-gradient(rgba(0,255,231,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(0,255,231,0.025) 1px,transparent 1px);background-size:40px 40px;animation:gridMove 25s linear infinite;pointer-events:none;z-index:0;}
+  @keyframes gridMove{from{background-position:0 0;}to{background-position:40px 40px;}}
+  ::-webkit-scrollbar{width:5px;} ::-webkit-scrollbar-thumb{background:var(--neon);}
+
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(5,10,14,0.9);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:66px;}
+  .nav-logo{font-family:'Orbitron',monospace;font-size:1.3rem;font-weight:900;color:#fff;letter-spacing:3px;text-decoration:none;}
+  .nav-logo span{color:var(--neon);}
+  .back-btn{background:rgba(0,255,231,0.08);border:1px solid var(--border);border-radius:8px;color:var(--neon);font-size:0.85rem;letter-spacing:1px;padding:9px 18px;text-decoration:none;transition:all 0.3s;}
+  .back-btn:hover{background:rgba(0,255,231,0.15);}
+
+  .page-hero{padding:130px 40px 60px;text-align:center;position:relative;z-index:1;}
+  .page-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(0,255,231,0.08);border:1px solid rgba(0,255,231,0.2);border-radius:30px;padding:7px 18px;font-size:0.78rem;letter-spacing:2px;color:var(--neon);margin-bottom:20px;}
+  .page-title{font-family:'Orbitron',monospace;font-size:clamp(2rem,6vw,3.5rem);font-weight:900;color:#fff;margin-bottom:14px;}
+  .page-title span{color:var(--neon);}
+  .page-sub{color:rgba(200,216,232,0.5);font-size:1rem;max-width:500px;margin:0 auto;}
+
+  /* DEVELOPER CARD */
+  .dev-section{max-width:1100px;margin:0 auto;padding:0 40px 60px;position:relative;z-index:1;}
+  .dev-card{
+    background:var(--card);border:1px solid var(--border);border-radius:24px;
+    padding:50px;display:flex;gap:50px;align-items:center;flex-wrap:wrap;
+    box-shadow:0 0 60px rgba(0,255,231,0.06);
+  }
+  .dev-avatar-wrap{flex-shrink:0;text-align:center;}
+  .dev-avatar{
+    width:160px;height:160px;border-radius:50%;
+    background:linear-gradient(135deg,var(--neon),#00b8ff,var(--neon2));
+    display:flex;align-items:center;justify-content:center;
+    font-size:70px;border:3px solid rgba(0,255,231,0.3);
+    box-shadow:0 0 40px rgba(0,255,231,0.2),0 0 80px rgba(0,255,231,0.1);
+    animation:avatarPulse 3s ease-in-out infinite;
+  }
+  @keyframes avatarPulse{0%,100%{box-shadow:0 0 40px rgba(0,255,231,0.2),0 0 80px rgba(0,255,231,0.1);}50%{box-shadow:0 0 60px rgba(0,255,231,0.4),0 0 100px rgba(0,255,231,0.15);}}
+  .dev-online{display:flex;align-items:center;gap:6px;justify-content:center;margin-top:12px;font-size:0.8rem;color:#00ff80;font-weight:600;}
+  .online-dot{width:8px;height:8px;background:#00ff80;border-radius:50%;animation:blink 2s infinite;}
+  @keyframes blink{0%,100%{opacity:1;}50%{opacity:0.3;}}
+  .dev-info{flex:1;}
+  .dev-role{font-size:0.72rem;letter-spacing:3px;color:var(--neon);font-weight:600;margin-bottom:6px;}
+  .dev-name{font-family:'Orbitron',monospace;font-size:2rem;color:#fff;font-weight:900;margin-bottom:6px;}
+  .dev-title{color:rgba(200,216,232,0.5);font-size:0.95rem;margin-bottom:20px;}
+  .dev-bio{color:rgba(200,216,232,0.6);font-size:0.92rem;line-height:1.75;margin-bottom:28px;max-width:500px;}
+  .dev-contacts{display:flex;flex-direction:column;gap:12px;}
+  .dc-item{display:flex;align-items:center;gap:14px;background:rgba(255,255,255,0.03);border:1px solid rgba(0,255,231,0.1);border-radius:10px;padding:12px 16px;transition:all 0.3s;text-decoration:none;}
+  .dc-item:hover{border-color:var(--neon);background:rgba(0,255,231,0.06);}
+  .dc-icon{font-size:20px;width:32px;text-align:center;flex-shrink:0;}
+  .dc-label{font-size:0.75rem;letter-spacing:1px;color:rgba(200,216,232,0.35);margin-bottom:2px;}
+  .dc-val{font-size:0.92rem;color:#fff;font-weight:600;}
+  .dc-copy{margin-left:auto;background:rgba(0,255,231,0.08);border:1px solid rgba(0,255,231,0.15);border-radius:6px;padding:4px 10px;font-size:0.72rem;color:var(--neon);cursor:pointer;transition:all 0.2s;}
+  .dc-copy:hover{background:rgba(0,255,231,0.15);}
+
+  /* Skills */
+  .skills-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px;}
+  .skill-tag{background:rgba(0,255,231,0.08);border:1px solid rgba(0,255,231,0.15);border-radius:20px;padding:5px 14px;font-size:0.75rem;color:var(--neon);letter-spacing:1px;}
+
+  /* CONTACT FORM */
+  .form-section{max-width:700px;margin:0 auto;padding:0 40px 60px;position:relative;z-index:1;}
+  .form-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:40px;box-shadow:0 0 40px rgba(0,255,231,0.05);}
+  .fc-title{font-family:'Orbitron',monospace;font-size:1.1rem;color:#fff;margin-bottom:6px;}
+  .fc-sub{font-size:0.85rem;color:rgba(200,216,232,0.4);margin-bottom:28px;}
+  .form-group{margin-bottom:18px;}
+  .form-group label{display:block;font-size:0.75rem;letter-spacing:2px;color:var(--neon);text-transform:uppercase;margin-bottom:7px;font-weight:600;}
+  .form-group input,.form-group textarea,.form-group select{width:100%;background:rgba(255,255,255,0.03);border:1px solid rgba(0,255,231,0.12);border-radius:10px;color:#fff;font-family:'Rajdhani',sans-serif;font-size:1rem;padding:12px 16px;outline:none;transition:all 0.3s;}
+  .form-group textarea{resize:vertical;min-height:120px;}
+  .form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--neon);box-shadow:0 0 15px rgba(0,255,231,0.1);}
+  .form-group select option{background:#0d1b2a;}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .btn-send{width:100%;background:linear-gradient(90deg,var(--neon),#00b8ff);color:#050a0e;font-family:'Orbitron',monospace;font-size:0.9rem;font-weight:700;letter-spacing:2px;border:none;border-radius:10px;padding:15px;cursor:pointer;box-shadow:0 0 25px rgba(0,255,231,0.25);transition:all 0.2s;margin-top:8px;}
+  .btn-send:hover{transform:translateY(-2px);box-shadow:0 0 40px rgba(0,255,231,0.45);}
+
+  .send-success{display:none;text-align:center;padding:20px 0;}
+  .ss-icon{font-size:60px;animation:popIn 0.5s both;}
+  @keyframes popIn{from{transform:scale(0);}to{transform:scale(1);}}
+  .ss-title{font-family:'Orbitron',monospace;font-size:1.1rem;color:var(--neon);margin:16px 0 8px;}
+  .ss-msg{color:rgba(200,216,232,0.5);font-size:0.9rem;line-height:1.6;}
+
+  /* SOCIAL LINKS */
+  .social-section{max-width:1100px;margin:0 auto;padding:0 40px 80px;position:relative;z-index:1;}
+  .social-title{font-family:'Orbitron',monospace;font-size:1.1rem;color:#fff;margin-bottom:20px;text-align:center;}
+  .social-title span{color:var(--neon);}
+  .social-grid{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;}
+  .social-btn{
+    display:flex;align-items:center;gap:12px;
+    background:var(--card);border:1px solid var(--border);
+    border-radius:12px;padding:16px 24px;text-decoration:none;
+    color:var(--text);font-weight:600;font-size:0.92rem;
+    transition:all 0.3s;min-width:160px;
+  }
+  .social-btn:hover{border-color:var(--neon);color:var(--neon);transform:translateY(-3px);box-shadow:0 15px 30px rgba(0,0,0,0.3);}
+  .social-btn .sbi{font-size:24px;}
+
+  /* FAQ */
+  .faq-section{max-width:800px;margin:0 auto;padding:0 40px 80px;position:relative;z-index:1;}
+  .faq-title{font-family:'Orbitron',monospace;font-size:1.2rem;color:#fff;margin-bottom:24px;text-align:center;}
+  .faq-title span{color:var(--neon);}
+  .faq-item{background:var(--card);border:1px solid var(--border);border-radius:12px;margin-bottom:12px;overflow:hidden;}
+  .faq-q{padding:18px 22px;font-weight:600;font-size:0.95rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center;color:#fff;transition:color 0.2s;}
+  .faq-q:hover{color:var(--neon);}
+  .faq-arrow{transition:transform 0.3s;color:var(--neon);}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height 0.4s ease;padding:0 22px;}
+  .faq-a p{padding-bottom:18px;font-size:0.88rem;color:rgba(200,216,232,0.55);line-height:1.7;}
+  .faq-item.open .faq-a{max-height:200px;}
+  .faq-item.open .faq-arrow{transform:rotate(180deg);}
+
+  footer{background:rgba(5,10,14,0.95);border-top:1px solid var(--border);padding:30px 40px;text-align:center;font-size:0.82rem;color:rgba(200,216,232,0.3);position:relative;z-index:1;}
+  .f-logo{font-family:'Orbitron',monospace;color:var(--neon);font-size:1rem;letter-spacing:3px;margin-bottom:10px;}
+  footer a{color:rgba(200,216,232,0.4);text-decoration:none;margin:0 10px;}
+
+  @media(max-width:768px){
+    .dev-card{flex-direction:column;padding:28px;gap:28px;text-align:center;}
+    .dev-bio{max-width:100%;}
+    .form-row{grid-template-columns:1fr;}
+    .dev-section,.form-section,.social-section,.faq-section{padding-left:16px;padding-right:16px;}
+  }
+</style>
+</head>
+<body>
+<nav>
+  <a href="home.html" class="nav-logo">🎮 Venom<span>Vault</span></a>
+  <a href="home.html" class="back-btn">← Home</a>
+</nav>
+
+<div class="page-hero">
+  <div class="page-badge">📡 GET IN TOUCH</div>
+  <h1 class="page-title">CONTACT <span>US</span></h1>
+  <p class="page-sub">Meet the developer behind VenomVault. We're here 24/7 — reach out any time.</p>
+</div>
+
+<!-- DEVELOPER CARD -->
+<div class="dev-section">
+  <div class="dev-card">
+    <div class="dev-avatar-wrap">
+      <div class="dev-avatar">👨‍💻</div>
+      <div class="dev-online"><span class="online-dot"></span> Online Now</div>
+    </div>
+    <div class="dev-info">
+      <div class="dev-role">LEAD DEVELOPER & FOUNDER</div>
+      <div class="dev-name">Arjun Sharma</div>
+      <div class="dev-title">Full-Stack Game Developer · VenomVault Creator</div>
+      <div class="dev-bio">
+        Passionate gamer and developer who built VenomVault from the ground up. With 4+ years of experience in web development and a deep love for gaming, I created this platform to bring together players from every corner of the world. Every feature you see was handcrafted with care.
+      </div>
+      <div class="dev-contacts">
+        <a class="dc-item" href="tel:+919876543210">
+          <span class="dc-icon">📞</span>
+          <div><div class="dc-label">PHONE / WHATSAPP</div><div class="dc-val">+91 98765 43210</div></div>
+          <span class="dc-copy" onclick="copyVal(event,'+91 98765 43210')">Copy</span>
+        </a>
+        <a class="dc-item" href="mailto:arjun@venomvault.gg">
+          <span class="dc-icon">✉️</span>
+          <div><div class="dc-label">EMAIL ADDRESS</div><div class="dc-val">arjun@venomvault.gg</div></div>
+          <span class="dc-copy" onclick="copyVal(event,'arjun@venomvault.gg')">Copy</span>
+        </a>
+        <div class="dc-item">
+          <span class="dc-icon">🌐</span>
+          <div><div class="dc-label">WEBSITE</div><div class="dc-val">www.venomvault.gg</div></div>
+        </div>
+        <div class="dc-item">
+          <span class="dc-icon">📍</span>
+          <div><div class="dc-label">LOCATION</div><div class="dc-val">Punjab, India 🇮🇳</div></div>
+        </div>
+        <div class="dc-item">
+          <span class="dc-icon">🕐</span>
+          <div><div class="dc-label">RESPONSE TIME</div><div class="dc-val">Usually within 2 hours</div></div>
+        </div>
+      </div>
+      <div class="skills-row">
+        <span class="skill-tag">HTML / CSS</span>
+        <span class="skill-tag">JavaScript</span>
+        <span class="skill-tag">Game Design</span>
+        <span class="skill-tag">UI/UX</span>
+        <span class="skill-tag">Node.js</span>
+        <span class="skill-tag">Python</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT FORM -->
+<div class="form-section">
+  <div class="form-card">
+    <div class="fc-title">📩 SEND A MESSAGE</div>
+    <div class="fc-sub">Have a question, bug report, or collaboration idea? Drop us a message!</div>
+    <div id="contactFormWrap">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Your Name</label>
+          <input type="text" id="cf-name" placeholder="Gamer tag or real name">
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" id="cf-email" placeholder="you@email.com">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Subject</label>
+        <select id="cf-subject">
+          <option value="">— Choose a topic —</option>
+          <option>Bug Report</option>
+          <option>Game Suggestion</option>
+          <option>Account Issue</option>
+          <option>Collaboration / Partnership</option>
+          <option>VaultCoin Query</option>
+          <option>General Feedback</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Message</label>
+        <textarea id="cf-msg" placeholder="Describe your query in detail..."></textarea>
+      </div>
+      <button class="btn-send" onclick="sendMessage()">📡 SEND MESSAGE</button>
+    </div>
+    <div class="send-success" id="sendSuccess">
+      <div class="ss-icon">✅</div>
+      <div class="ss-title">MESSAGE SENT!</div>
+      <div class="ss-msg">Thanks for reaching out! Arjun will get back to you within 2 hours. In the meantime, explore more games and earn VaultCoins!</div>
+    </div>
+  </div>
+</div>
+
+<!-- SOCIAL LINKS -->
+<div class="social-section">
+  <div class="social-title">FIND US ON <span>SOCIAL</span></div>
+  <div class="social-grid">
+    <a href="#" class="social-btn"><span class="sbi">📸</span> Instagram</a>
+    <a href="#" class="social-btn"><span class="sbi">🐦</span> Twitter / X</a>
+    <a href="#" class="social-btn"><span class="sbi">💻</span> GitHub</a>
+    <a href="#" class="social-btn"><span class="sbi">💬</span> Discord</a>
+    <a href="#" class="social-btn"><span class="sbi">▶️</span> YouTube</a>
+    <a href="#" class="social-btn"><span class="sbi">💼</span> LinkedIn</a>
+  </div>
+</div>
+
+<!-- FAQ -->
+<div class="faq-section">
+  <div class="faq-title">FREQUENTLY ASKED <span>QUESTIONS</span></div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">How do I earn VaultCoins? <span class="faq-arrow">▼</span></div>
+    <div class="faq-a"><p>You earn VaultCoins by winning games, logging in daily, leaving reviews, completing achievements, and referring friends. Every action inside VenomVault rewards you with coins that never expire.</p></div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">Is VenomVault free to use? <span class="faq-arrow">▼</span></div>
+    <div class="faq-a"><p>Yes! VenomVault is completely free to use. Create an account, play games, and earn coins at no cost. We offer optional premium features for players who want extra perks, but all core games are free.</p></div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">How does the anti-cheat system work? <span class="faq-arrow">▼</span></div>
+    <div class="faq-a"><p>Our real-time monitoring system flags unusual patterns like impossible scores, speed hacks, and bot activity. Flagged accounts are reviewed by our team within 24 hours. Cheaters are permanently banned.</p></div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">Can I suggest a new game? <span class="faq-arrow">▼</span></div>
+    <div class="faq-a"><p>Absolutely! Use the contact form above with subject "Game Suggestion" and describe the type of game you'd like to see. Popular suggestions are reviewed monthly and the best ones get added to the Vault!</p></div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">My VaultCoins are missing — what do I do? <span class="faq-arrow">▼</span></div>
+    <div class="faq-a"><p>Send us a message via the contact form with your account details and we'll investigate within 2 hours. Coin issues are our top priority and are almost always resolved within the same day.</p></div>
+  </div>
+</div>
+
+<footer>
+  <div class="f-logo">🎮 VENOM<span style="color:#fff">VAULT</span></div>
+  <a href="home.html">Home</a><a href="games.html">Games</a><a href="reviews.html">Reviews</a><a href="about.html">About</a>
+  <div style="margin-top:12px;">© 2025 VenomVault Gaming Platform. Made with ❤️ in India.</div>
+</footer>
+
+<script>
+function sendMessage(){
+  const name=document.getElementById('cf-name').value.trim();
+  const email=document.getElementById('cf-email').value.trim();
+  const msg=document.getElementById('cf-msg').value.trim();
+  if(!name){alert('Please enter your name.');return;}
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){alert('Please enter a valid email address.');return;}
+  if(msg.length<10){alert('Please write a message of at least 10 characters.');return;}
+  document.getElementById('contactFormWrap').style.display='none';
+  document.getElementById('sendSuccess').style.display='block';
+}
+
+function copyVal(e, val){
+  e.preventDefault(); e.stopPropagation();
+  navigator.clipboard.writeText(val).then(()=>{
+    e.target.textContent='Copied!';
+    setTimeout(()=>e.target.textContent='Copy',2000);
+  });
+}
+
+function toggleFaq(el){
+  const item = el.parentElement;
+  const wasOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+  if(!wasOpen) item.classList.add('open');
+}
+</script>
+</body>
+</html>

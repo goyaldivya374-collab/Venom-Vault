@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VenomVault – Home</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --neon:#00ffe7; --neon2:#ff3c78; --dark:#050a0e; --card:#0d1b2a;
+    --border:rgba(0,255,231,0.15); --text:#c8d8e8;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--dark);font-family:'Rajdhani',sans-serif;color:var(--text);overflow-x:hidden;}
+
+  /* Scrollbar */
+  ::-webkit-scrollbar{width:6px;} ::-webkit-scrollbar-track{background:#050a0e;}
+  ::-webkit-scrollbar-thumb{background:var(--neon);border-radius:3px;}
+
+  /* Animated grid bg */
+  body::before{content:'';position:fixed;inset:0;
+    background:linear-gradient(rgba(0,255,231,0.03) 1px,transparent 1px),
+               linear-gradient(90deg,rgba(0,255,231,0.03) 1px,transparent 1px);
+    background-size:40px 40px;animation:gridMove 25s linear infinite;pointer-events:none;z-index:0;}
+  @keyframes gridMove{from{background-position:0 0;}to{background-position:40px 40px;}}
+
+  /* NAVBAR */
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;
+    background:rgba(5,10,14,0.85);backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--border);
+    display:flex;align-items:center;justify-content:space-between;
+    padding:0 40px;height:66px;
+    transition:box-shadow 0.3s;}
+  nav.scrolled{box-shadow:0 4px 30px rgba(0,255,231,0.08);}
+
+  .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+  .nav-logo-icon{font-size:28px;filter:drop-shadow(0 0 8px var(--neon));}
+  .nav-logo-text{font-family:'Orbitron',monospace;font-size:1.3rem;font-weight:900;color:#fff;letter-spacing:3px;}
+  .nav-logo-text span{color:var(--neon);}
+
+  .nav-links{display:flex;gap:6px;}
+  .nav-links a{
+    color:var(--text);text-decoration:none;
+    font-size:0.85rem;letter-spacing:1.5px;text-transform:uppercase;font-weight:600;
+    padding:8px 16px;border-radius:6px;
+    border:1px solid transparent;
+    transition:color 0.3s,border-color 0.3s,background 0.3s;
+  }
+  .nav-links a:hover{color:var(--neon);border-color:rgba(0,255,231,0.2);background:rgba(0,255,231,0.06);}
+
+  /* Profile button */
+  .profile-btn{
+    position:relative;cursor:pointer;
+    width:42px;height:42px;border-radius:50%;
+    background:linear-gradient(135deg,var(--neon),#00b8ff);
+    display:flex;align-items:center;justify-content:center;
+    font-size:20px;border:none;
+    box-shadow:0 0 15px rgba(0,255,231,0.3);
+    transition:box-shadow 0.3s,transform 0.2s;
+    flex-shrink:0;
+  }
+  .profile-btn:hover{box-shadow:0 0 25px rgba(0,255,231,0.5);transform:scale(1.05);}
+  .profile-badge{
+    position:absolute;top:-3px;right:-3px;
+    width:12px;height:12px;background:#00ff80;border-radius:50%;
+    border:2px solid var(--dark);
+  }
+  .profile-dropdown{
+    position:absolute;top:58px;right:0;
+    width:260px;background:var(--card);
+    border:1px solid var(--border);border-radius:14px;
+    padding:20px;
+    box-shadow:0 20px 60px rgba(0,0,0,0.5),0 0 40px rgba(0,255,231,0.08);
+    opacity:0;pointer-events:none;transform:translateY(-8px);
+    transition:opacity 0.25s,transform 0.25s;z-index:200;
+  }
+  .profile-dropdown.open{opacity:1;pointer-events:all;transform:none;}
+  .profile-header{display:flex;align-items:center;gap:12px;margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--border);}
+  .profile-avatar{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--neon),#00b8ff);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;}
+  .profile-name{font-family:'Orbitron',monospace;font-size:0.85rem;color:#fff;font-weight:700;}
+  .profile-email{font-size:0.75rem;color:rgba(200,216,232,0.4);margin-top:2px;}
+  .profile-row{display:flex;justify-content:space-between;font-size:0.83rem;color:var(--text);margin-bottom:9px;}
+  .profile-row span:first-child{color:rgba(200,216,232,0.45);}
+  .profile-row span:last-child{color:#fff;font-weight:600;}
+  .coin-row{display:flex;align-items:center;justify-content:space-between;
+    background:rgba(0,255,231,0.06);border:1px solid rgba(0,255,231,0.15);
+    border-radius:8px;padding:10px 14px;margin:12px 0;}
+  .coin-val{font-family:'Orbitron',monospace;color:var(--neon);font-size:1.1rem;font-weight:700;}
+  .btn-logout{
+    width:100%;background:transparent;border:1px solid rgba(255,60,120,0.3);
+    border-radius:8px;color:var(--neon2);font-family:'Rajdhani',sans-serif;
+    font-size:0.85rem;letter-spacing:1px;font-weight:600;
+    padding:9px;cursor:pointer;margin-top:4px;
+    transition:background 0.3s,border-color 0.3s;
+  }
+  .btn-logout:hover{background:rgba(255,60,120,0.1);border-color:var(--neon2);}
+
+  /* HERO */
+  .hero{
+    min-height:100vh;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;
+    text-align:center;padding:100px 24px 60px;
+    position:relative;
+  }
+  .hero-glow{
+    position:absolute;top:20%;left:50%;transform:translateX(-50%);
+    width:700px;height:400px;
+    background:radial-gradient(ellipse,rgba(0,255,231,0.08) 0%,transparent 70%);
+    pointer-events:none;
+  }
+  .hero-badge{
+    display:inline-flex;align-items:center;gap:8px;
+    background:rgba(0,255,231,0.08);border:1px solid rgba(0,255,231,0.2);
+    border-radius:30px;padding:7px 18px;
+    font-size:0.78rem;letter-spacing:2px;color:var(--neon);
+    margin-bottom:28px;animation:fadeDown 0.7s both;
+  }
+  @keyframes fadeDown{from{opacity:0;transform:translateY(-15px);}to{opacity:1;transform:none;}}
+  .hero-title{
+    font-family:'Orbitron',monospace;
+    font-size:clamp(2.4rem,7vw,6rem);font-weight:900;
+    color:#fff;line-height:1.05;
+    animation:fadeUp 0.8s 0.1s both;
+    text-shadow:0 0 40px rgba(0,255,231,0.2);
+  }
+  .hero-title .accent{color:var(--neon);text-shadow:0 0 30px var(--neon),0 0 60px rgba(0,255,231,0.4);}
+  .hero-title .accent2{color:var(--neon2);text-shadow:0 0 30px var(--neon2);}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(25px);}to{opacity:1;transform:none;}}
+  .hero-sub{
+    font-size:1.1rem;color:rgba(200,216,232,0.55);
+    max-width:540px;margin:20px auto 40px;line-height:1.7;
+    animation:fadeUp 0.8s 0.2s both;
+  }
+  .hero-btns{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;animation:fadeUp 0.8s 0.3s both;}
+  .btn-primary{
+    background:linear-gradient(90deg,var(--neon),#00b8ff);
+    color:#050a0e;font-family:'Orbitron',monospace;
+    font-size:0.85rem;font-weight:700;letter-spacing:2px;
+    border:none;border-radius:10px;padding:15px 36px;cursor:pointer;
+    box-shadow:0 0 30px rgba(0,255,231,0.3);
+    transition:transform 0.2s,box-shadow 0.3s;text-decoration:none;display:inline-block;
+  }
+  .btn-primary:hover{transform:translateY(-3px);box-shadow:0 0 50px rgba(0,255,231,0.5);}
+  .btn-outline{
+    background:transparent;border:1px solid rgba(0,255,231,0.3);
+    color:var(--neon);font-family:'Orbitron',monospace;
+    font-size:0.85rem;font-weight:700;letter-spacing:2px;
+    border-radius:10px;padding:15px 36px;cursor:pointer;text-decoration:none;
+    display:inline-block;transition:all 0.3s;
+  }
+  .btn-outline:hover{background:rgba(0,255,231,0.08);border-color:var(--neon);}
+
+  .hero-stats{
+    display:flex;gap:48px;margin-top:60px;flex-wrap:wrap;justify-content:center;
+    animation:fadeUp 0.8s 0.4s both;
+  }
+  .stat-item{text-align:center;}
+  .stat-num{font-family:'Orbitron',monospace;font-size:2rem;font-weight:900;color:#fff;
+    text-shadow:0 0 20px rgba(0,255,231,0.3);}
+  .stat-label{font-size:0.78rem;color:rgba(200,216,232,0.35);letter-spacing:2px;margin-top:4px;}
+
+  /* SECTION NAV CARDS */
+  .section-nav{
+    position:relative;z-index:1;
+    padding:80px 40px;
+    display:flex;flex-direction:column;align-items:center;
+  }
+  .section-label{
+    font-family:'Orbitron',monospace;
+    font-size:0.7rem;letter-spacing:4px;color:var(--neon);
+    text-transform:uppercase;margin-bottom:14px;
+  }
+  .section-title{
+    font-family:'Orbitron',monospace;
+    font-size:clamp(1.5rem,4vw,2.4rem);font-weight:900;color:#fff;
+    text-align:center;margin-bottom:60px;
+  }
+  .section-title span{color:var(--neon);}
+
+  .cards-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:24px;width:100%;max-width:1200px;
+  }
+  .nav-card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:16px;
+    padding:32px 28px;
+    text-decoration:none;
+    display:flex;flex-direction:column;gap:12px;
+    position:relative;overflow:hidden;
+    transition:transform 0.3s,border-color 0.3s,box-shadow 0.3s;
+    cursor:pointer;
+  }
+  .nav-card::before{
+    content:'';position:absolute;inset:0;
+    background:linear-gradient(135deg,rgba(0,255,231,0.04) 0%,transparent 60%);
+    opacity:0;transition:opacity 0.3s;
+  }
+  .nav-card:hover{transform:translateY(-6px);border-color:var(--neon);box-shadow:0 20px 50px rgba(0,0,0,0.4),0 0 30px rgba(0,255,231,0.1);}
+  .nav-card:hover::before{opacity:1;}
+  .card-icon{font-size:42px;line-height:1;filter:drop-shadow(0 0 8px rgba(0,255,231,0.3));}
+  .card-title{font-family:'Orbitron',monospace;font-size:1rem;color:#fff;font-weight:700;letter-spacing:1px;}
+  .card-desc{font-size:0.88rem;color:rgba(200,216,232,0.5);line-height:1.6;}
+  .card-arrow{
+    margin-top:auto;color:var(--neon);font-size:0.8rem;letter-spacing:2px;font-weight:600;
+    display:flex;align-items:center;gap:6px;transition:gap 0.2s;
+  }
+  .nav-card:hover .card-arrow{gap:12px;}
+  .card-tag{
+    position:absolute;top:16px;right:16px;
+    background:rgba(0,255,231,0.1);border:1px solid rgba(0,255,231,0.2);
+    border-radius:20px;padding:3px 10px;
+    font-size:0.7rem;color:var(--neon);letter-spacing:1px;
+  }
+  .card-tag.hot{background:rgba(255,60,120,0.1);border-color:rgba(255,60,120,0.25);color:var(--neon2);}
+
+  /* Featured games strip */
+  .featured-strip{
+    padding:0 40px 100px;position:relative;z-index:1;
+    display:flex;flex-direction:column;align-items:center;
+  }
+  .game-scroll{
+    display:flex;gap:20px;overflow-x:auto;padding-bottom:16px;
+    width:100%;max-width:1200px;scrollbar-width:thin;scrollbar-color:var(--neon) transparent;
+  }
+  .game-card{
+    flex-shrink:0;width:200px;
+    background:var(--card);border:1px solid var(--border);
+    border-radius:14px;overflow:hidden;
+    transition:transform 0.3s,box-shadow 0.3s;cursor:pointer;
+  }
+  .game-card:hover{transform:translateY(-6px);box-shadow:0 20px 40px rgba(0,0,0,0.5),0 0 20px rgba(0,255,231,0.1);}
+  .game-thumb{height:120px;display:flex;align-items:center;justify-content:center;font-size:52px;position:relative;}
+  .game-info{padding:14px;}
+  .game-name{font-family:'Orbitron',monospace;font-size:0.78rem;color:#fff;font-weight:700;}
+  .game-genre{font-size:0.73rem;color:rgba(200,216,232,0.4);margin-top:4px;}
+  .game-rating{display:flex;align-items:center;gap:4px;margin-top:8px;font-size:0.78rem;color:#ffd700;}
+
+  /* ANNOUNCEMENT TICKER */
+  .ticker{
+    background:rgba(0,255,231,0.06);border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+    padding:12px 0;overflow:hidden;white-space:nowrap;
+    font-size:0.82rem;letter-spacing:1px;color:var(--neon);font-weight:600;
+  }
+  .ticker-inner{display:inline-block;animation:ticker 30s linear infinite;}
+  @keyframes ticker{from{transform:translateX(100vw);}to{transform:translateX(-100%);}  }
+
+  /* FOOTER */
+  footer{
+    background:rgba(5,10,14,0.95);border-top:1px solid var(--border);
+    padding:40px;text-align:center;
+    font-size:0.82rem;color:rgba(200,216,232,0.3);
+  }
+  footer .f-logo{font-family:'Orbitron',monospace;color:var(--neon);font-size:1.1rem;letter-spacing:3px;margin-bottom:12px;}
+  footer a{color:rgba(200,216,232,0.4);text-decoration:none;margin:0 12px;}
+  footer a:hover{color:var(--neon);}
+
+  /* Notification dot anim */
+  @keyframes blink{0%,100%{opacity:1;}50%{opacity:0.3;}}
+  .profile-badge{animation:blink 2s infinite;}
+
+  /* Responsive */
+  @media(max-width:768px){
+    nav{padding:0 18px;}
+    .nav-links{display:none;}
+    .hero{padding:90px 20px 50px;}
+    .section-nav,.featured-strip{padding-left:20px;padding-right:20px;}
+    .cards-grid{grid-template-columns:1fr;}
+    .hero-stats{gap:28px;}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <a href="home.html" class="nav-logo">
+    <span class="nav-logo-icon">🎮</span>
+    <span class="nav-logo-text">Venom<span>Vault</span></span>
+  </a>
+  <div class="nav-links">
+    <a href="trailer.html">🎬 Trailers</a>
+    <a href="games.html">🕹 Games</a>
+    <a href="features.html">⚡ Features</a>
+    <a href="reviews.html">⭐ Reviews</a>
+    <a href="contact.html">📡 Contact</a>
+    <a href="about.html">ℹ About</a>
+  </div>
+  <div style="position:relative;">
+    <button class="profile-btn" id="profileBtn">👾
+      <div class="profile-badge"></div>
+    </button>
+    <div class="profile-dropdown" id="profileDropdown">
+      <div class="profile-header">
+        <div class="profile-avatar">👾</div>
+        <div>
+          <div class="profile-name" id="dd-name">VIPER</div>
+          <div class="profile-email" id="dd-email">player@vault.com</div>
+        </div>
+      </div>
+      <div class="profile-row"><span>Genre</span><span id="dd-genre">—</span></div>
+      <div class="profile-row"><span>Member Since</span><span>May 2025</span></div>
+      <div class="profile-row"><span>Rank</span><span>🥉 Bronze Viper</span></div>
+      <div class="coin-row">
+        <span>💰 VaultCoins</span>
+        <span class="coin-val" id="dd-coins">0</span>
+      </div>
+      <button class="btn-logout" onclick="logout()">🚪 Sign Out</button>
+    </div>
+  </div>
+</nav>
+
+<!-- TICKER -->
+<div class="ticker" style="margin-top:66px;">
+  <div class="ticker-inner">
+    🔥 NEW: Shadow Protocol Season 3 now LIVE &nbsp;•&nbsp; 🏆 Tournament: Weekend Blitz — Prize Pool 50,000 VaultCoins &nbsp;•&nbsp; ⚡ Flash Sale: Get 2x VaultCoins this weekend &nbsp;•&nbsp; 🎮 New Game Added: Nebula Assault — Play Now &nbsp;•&nbsp; 🌍 1M+ Players Online Right Now &nbsp;•&nbsp; 🛡 Anti-cheat update deployed &nbsp;•&nbsp;
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-badge">🐍 THE ULTIMATE GAMING VAULT</div>
+  <h1 class="hero-title">
+    WELCOME TO<br>
+    <span class="accent">VENOM</span><span class="accent2">VAULT</span>
+  </h1>
+  <p class="hero-sub">Discover epic games, earn VaultCoins, crush global tournaments. Your vault. Your rules. Your legend.</p>
+  <div class="hero-btns">
+    <a href="games.html" class="btn-primary">🎮 START PLAYING</a>
+    <a href="trailer.html" class="btn-outline">▶ WATCH TRAILER</a>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-item"><div class="stat-num" id="stat1">0</div><div class="stat-label">PLAYERS ONLINE</div></div>
+    <div class="stat-item"><div class="stat-num" id="stat2">0</div><div class="stat-label">GAMES AVAILABLE</div></div>
+    <div class="stat-item"><div class="stat-num" id="stat3">0</div><div class="stat-label">TOURNAMENTS WON</div></div>
+    <div class="stat-item"><div class="stat-num" id="stat4">0</div><div class="stat-label">VAULTCOINS AWARDED</div></div>
+  </div>
+</section>
+
+<!-- SECTION NAV CARDS -->
+<section class="section-nav">
+  <div class="section-label">EXPLORE</div>
+  <h2 class="section-title">VAULT <span>SECTIONS</span></h2>
+  <div class="cards-grid">
+    <a href="trailer.html" class="nav-card">
+      <div class="card-tag">🔴 LIVE</div>
+      <div class="card-icon">🎬</div>
+      <div class="card-title">GAME TRAILERS</div>
+      <div class="card-desc">Watch cinematic trailers for the hottest games. Experience the action before you play.</div>
+      <div class="card-arrow">EXPLORE TRAILERS →</div>
+    </a>
+    <a href="games.html" class="nav-card">
+      <div class="card-tag hot">🔥 HOT</div>
+      <div class="card-icon">🕹️</div>
+      <div class="card-title">PLAY GAMES</div>
+      <div class="card-desc">Personalized game recommendations based on your style. Earn coins. Dominate leaderboards.</div>
+      <div class="card-arrow">PLAY NOW →</div>
+    </a>
+    <a href="features.html" class="nav-card">
+      <div class="card-icon">⚡</div>
+      <div class="card-title">FEATURES</div>
+      <div class="card-desc">Explore VaultCoins, tournaments, achievements, and everything that makes VenomVault elite.</div>
+      <div class="card-arrow">DISCOVER →</div>
+    </a>
+    <a href="reviews.html" class="nav-card">
+      <div class="card-icon">⭐</div>
+      <div class="card-title">REVIEWS</div>
+      <div class="card-desc">Rate your experience. Read what the community is saying about VenomVault.</div>
+      <div class="card-arrow">READ REVIEWS →</div>
+    </a>
+    <a href="contact.html" class="nav-card">
+      <div class="card-icon">📡</div>
+      <div class="card-title">CONTACT US</div>
+      <div class="card-desc">Meet the developer. Get support. Reach out anytime — we're always online.</div>
+      <div class="card-arrow">GET IN TOUCH →</div>
+    </a>
+    <a href="about.html" class="nav-card">
+      <div class="card-icon">🏛️</div>
+      <div class="card-title">ABOUT VAULT</div>
+      <div class="card-desc">The story behind VenomVault — our mission, our history, and our vision for gaming.</div>
+      <div class="card-arrow">OUR STORY →</div>
+    </a>
+  </div>
+</section>
+
+<!-- FEATURED GAMES -->
+<section class="featured-strip">
+  <div class="section-label">TRENDING NOW</div>
+  <h2 class="section-title" style="margin-bottom:28px;">FEATURED <span>GAMES</span></h2>
+  <div class="game-scroll">
+    <div class="game-card" onclick="location.href='games.html'">
+      <div class="game-thumb" style="background:linear-gradient(135deg,#0a1628,#1a2a4a)">🔫</div>
+      <div class="game-info"><div class="game-name">SHADOW PROTOCOL</div><div class="game-genre">Action / Shooter</div><div class="game-rating">★★★★★ 4.9</div></div>
+    </div>
+    <div class="game-card" onclick="location.href='games.html'">
+      <div class="game-thumb" style="background:linear-gradient(135deg,#1a0a28,#2a1a4a)">🧙</div>
+      <div class="game-info"><div class="game-name">MYTHIC REALM</div><div class="game-genre">RPG / Adventure</div><div class="game-rating">★★★★☆ 4.6</div></div>
+    </div>
+    <div class="game-card" onclick="location.href='games.html'">
+      <div class="game-thumb" style="background:linear-gradient(135deg,#0a2818,#1a4a2a)">🧩</div>
+      <div class="game-info"><div class="game-name">QUANTUM GRID</div><div class="game-genre">Puzzle / Strategy</div><div class="game-rating">★★★★★ 4.8</div></div>
+    </div>
+    <div class="game-card" onclick="location.href='games.html'">
+      <div class="game-thumb" style="background:linear-gradient(135deg,#281a0a,#4a2a1a)">🚗</div>
+      <div class="game-info"><div class="game-name">TURBO CLASH</div><div class="game-genre">Racing / Sports</div><div class="game-rating">★★★★☆ 4.5</div></div>
+    </div>
+    <div class="game-card" onclick="location.href='games.html'">
+      <div class="game-thumb" style="background:linear-gradient(135deg,#280a0a,#4a1a1a)">👻</div>
+      <div class="game-info"><div class="game-name">DARK DESCENT</div><div class="game-genre">Horror / Survival</div><div class="game-rating">★★★★★ 4.7</div></div>
+    </div>
+    <div class="game-card" onclick="location.href='games.html'">
+      <div class="game-thumb" style="background:linear-gradient(135deg,#0a0a28,#1a1a4a)">🌌</div>
+      <div class="game-info"><div class="game-name">NEBULA ASSAULT</div><div class="game-genre">Battle Royale</div><div class="game-rating">★★★★☆ 4.4</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="f-logo">🎮 VENOM<span style="color:#fff">VAULT</span></div>
+  <div style="margin-bottom:16px;">
+    <a href="trailer.html">Trailers</a>
+    <a href="games.html">Games</a>
+    <a href="features.html">Features</a>
+    <a href="reviews.html">Reviews</a>
+    <a href="contact.html">Contact</a>
+    <a href="about.html">About</a>
+  </div>
+  <div>© 2025 VenomVault Gaming Platform. Built with ⚡ by the Vault Team.</div>
+</footer>
+
+<script>
+  // Load user data
+  function loadProfile(){
+    const raw = localStorage.getItem('vv_user');
+    if(!raw) return;
+    const u = JSON.parse(raw);
+    document.getElementById('dd-name').textContent = u.name?.toUpperCase() || 'PLAYER';
+    document.getElementById('dd-email').textContent = u.email || '';
+    document.getElementById('dd-genre').textContent = u.genre || '—';
+    const coins = parseInt(localStorage.getItem('vv_coins')||'0');
+    document.getElementById('dd-coins').textContent = coins.toLocaleString();
+  }
+  loadProfile();
+
+  // Profile dropdown
+  document.getElementById('profileBtn').addEventListener('click', function(e){
+    e.stopPropagation();
+    document.getElementById('profileDropdown').classList.toggle('open');
+  });
+  document.addEventListener('click',()=>document.getElementById('profileDropdown').classList.remove('open'));
+
+  // Navbar scroll effect
+  window.addEventListener('scroll',()=>{
+    document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>10);
+  });
+
+  // Animated counters
+  function animateCounter(el,target,suffix='',duration=2000){
+    let start=0,step=target/60;
+    const timer=setInterval(()=>{
+      start+=step;
+      if(start>=target){start=target;clearInterval(timer);}
+      el.textContent=Math.floor(start).toLocaleString()+(suffix||'');
+    },duration/60);
+  }
+
+  const observer = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        animateCounter(document.getElementById('stat1'),1247382);
+        animateCounter(document.getElementById('stat2'),48);
+        animateCounter(document.getElementById('stat3'),892347);
+        animateCounter(document.getElementById('stat4'),52000000);
+        observer.disconnect();
+      }
+    });
+  });
+  observer.observe(document.querySelector('.hero-stats'));
+
+  function logout(){
+    localStorage.removeItem('vv_user');
+    window.location.href='login.html';
+  }
+</script>
+</body>
+</html>

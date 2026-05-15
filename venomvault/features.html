@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VenomVault – Features</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  :root{--neon:#00ffe7;--neon2:#ff3c78;--dark:#050a0e;--card:#0d1b2a;--border:rgba(0,255,231,0.15);--text:#c8d8e8;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--dark);font-family:'Rajdhani',sans-serif;color:var(--text);}
+  body::before{content:'';position:fixed;inset:0;background:linear-gradient(rgba(0,255,231,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(0,255,231,0.025) 1px,transparent 1px);background-size:40px 40px;animation:gridMove 25s linear infinite;pointer-events:none;z-index:0;}
+  @keyframes gridMove{from{background-position:0 0;}to{background-position:40px 40px;}}
+  ::-webkit-scrollbar{width:5px;} ::-webkit-scrollbar-thumb{background:var(--neon);}
+
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(5,10,14,0.9);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:66px;}
+  .nav-logo{font-family:'Orbitron',monospace;font-size:1.3rem;font-weight:900;color:#fff;letter-spacing:3px;text-decoration:none;}
+  .nav-logo span{color:var(--neon);}
+  .back-btn{background:rgba(0,255,231,0.08);border:1px solid var(--border);border-radius:8px;color:var(--neon);font-size:0.85rem;letter-spacing:1px;padding:9px 18px;text-decoration:none;transition:all 0.3s;}
+  .back-btn:hover{background:rgba(0,255,231,0.15);}
+
+  .page-hero{padding:130px 40px 70px;text-align:center;position:relative;z-index:1;}
+  .page-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(0,255,231,0.08);border:1px solid rgba(0,255,231,0.2);border-radius:30px;padding:7px 18px;font-size:0.78rem;letter-spacing:2px;color:var(--neon);margin-bottom:20px;}
+  .page-title{font-family:'Orbitron',monospace;font-size:clamp(2rem,6vw,4rem);font-weight:900;color:#fff;margin-bottom:14px;}
+  .page-title span{color:var(--neon);}
+  .page-sub{color:rgba(200,216,232,0.5);font-size:1rem;max-width:540px;margin:0 auto;}
+
+  /* BIG FEATURE CARDS */
+  .big-features{padding:20px 40px 80px;max-width:1200px;margin:0 auto;position:relative;z-index:1;}
+  .big-card{
+    background:var(--card);border:1px solid var(--border);border-radius:20px;
+    padding:48px;margin-bottom:24px;
+    display:flex;align-items:center;gap:48px;
+    transition:border-color 0.3s,box-shadow 0.3s;
+    animation:slideIn 0.6s both;
+  }
+  @keyframes slideIn{from{opacity:0;transform:translateX(-30px);}to{opacity:1;transform:none;}}
+  .big-card:nth-child(even){flex-direction:row-reverse;animation:slideInR 0.6s both;}
+  @keyframes slideInR{from{opacity:0;transform:translateX(30px);}to{opacity:1;transform:none;}}
+  .big-card:hover{border-color:var(--neon);box-shadow:0 0 40px rgba(0,255,231,0.08);}
+  .bc-icon-wrap{
+    flex-shrink:0;width:120px;height:120px;border-radius:24px;
+    display:flex;align-items:center;justify-content:center;font-size:56px;
+    position:relative;overflow:hidden;
+  }
+  .bc-icon-wrap::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,0.1),transparent);}
+  .bc-content{flex:1;}
+  .bc-label{font-size:0.72rem;letter-spacing:3px;color:var(--neon);font-weight:600;margin-bottom:8px;}
+  .bc-title{font-family:'Orbitron',monospace;font-size:1.4rem;color:#fff;font-weight:700;margin-bottom:12px;}
+  .bc-desc{color:rgba(200,216,232,0.55);font-size:0.95rem;line-height:1.7;margin-bottom:20px;}
+  .bc-tags{display:flex;flex-wrap:wrap;gap:8px;}
+  .bc-tag{background:rgba(0,255,231,0.08);border:1px solid rgba(0,255,231,0.15);border-radius:20px;padding:5px 14px;font-size:0.75rem;color:var(--neon);letter-spacing:1px;}
+
+  /* Small feature grid */
+  .features-grid{padding:0 40px 80px;max-width:1200px;margin:0 auto;position:relative;z-index:1;}
+  .fg-title{font-family:'Orbitron',monospace;font-size:1.5rem;color:#fff;margin-bottom:30px;text-align:center;}
+  .fg-title span{color:var(--neon);}
+  .fg-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:20px;}
+  .fg-card{
+    background:var(--card);border:1px solid var(--border);border-radius:14px;padding:26px 20px;
+    text-align:center;transition:all 0.3s;cursor:default;
+  }
+  .fg-card:hover{border-color:var(--neon);transform:translateY(-4px);box-shadow:0 15px 40px rgba(0,0,0,0.4);}
+  .fg-icon{font-size:36px;margin-bottom:14px;display:block;}
+  .fg-name{font-family:'Orbitron',monospace;font-size:0.85rem;color:#fff;margin-bottom:8px;font-weight:700;}
+  .fg-text{font-size:0.82rem;color:rgba(200,216,232,0.45);line-height:1.5;}
+
+  /* VaultCoin tracker */
+  .coin-section{padding:0 40px 80px;max-width:1200px;margin:0 auto;position:relative;z-index:1;}
+  .coin-card{background:linear-gradient(135deg,rgba(0,255,231,0.06) 0%,var(--card) 60%);border:1px solid rgba(0,255,231,0.25);border-radius:20px;padding:40px;display:flex;justify-content:space-between;align-items:center;gap:40px;flex-wrap:wrap;}
+  .cc-left h2{font-family:'Orbitron',monospace;font-size:1.5rem;color:#fff;margin-bottom:10px;}
+  .cc-left p{color:rgba(200,216,232,0.5);font-size:0.9rem;line-height:1.6;max-width:380px;}
+  .cc-ways{display:flex;flex-direction:column;gap:12px;min-width:220px;}
+  .cc-way{display:flex;align-items:center;gap:12px;background:rgba(0,0,0,0.2);border:1px solid var(--border);border-radius:10px;padding:12px 16px;}
+  .cc-way-icon{font-size:20px;flex-shrink:0;}
+  .cc-way-text{font-size:0.88rem;color:#fff;font-weight:600;}
+  .cc-way-coins{margin-left:auto;font-family:'Orbitron',monospace;color:var(--neon);font-size:0.85rem;}
+
+  /* Stats bar */
+  .stats-section{background:rgba(0,255,231,0.03);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:40px;display:flex;justify-content:center;gap:60px;flex-wrap:wrap;position:relative;z-index:1;}
+  .ss-item{text-align:center;}
+  .ss-val{font-family:'Orbitron',monospace;font-size:2rem;color:var(--neon);font-weight:900;}
+  .ss-label{font-size:0.78rem;color:rgba(200,216,232,0.35);letter-spacing:2px;margin-top:4px;}
+
+  footer{background:rgba(5,10,14,0.95);border-top:1px solid var(--border);padding:30px 40px;text-align:center;font-size:0.82rem;color:rgba(200,216,232,0.3);position:relative;z-index:1;}
+  .f-logo{font-family:'Orbitron',monospace;color:var(--neon);font-size:1rem;letter-spacing:3px;margin-bottom:10px;}
+  footer a{color:rgba(200,216,232,0.4);text-decoration:none;margin:0 10px;}
+
+  @media(max-width:768px){
+    .big-card,.big-card:nth-child(even){flex-direction:column;padding:28px;gap:20px;}
+    .big-features,.features-grid,.coin-section,.stats-section{padding-left:16px;padding-right:16px;}
+  }
+</style>
+</head>
+<body>
+<nav>
+  <a href="home.html" class="nav-logo">🎮 Venom<span>Vault</span></a>
+  <a href="home.html" class="back-btn">← Home</a>
+</nav>
+
+<div class="page-hero">
+  <div class="page-badge">⚡ PLATFORM FEATURES</div>
+  <h1 class="page-title">WHAT MAKES US <span>ELITE</span></h1>
+  <p class="page-sub">Everything you need for a world-class gaming experience — all inside VenomVault.</p>
+</div>
+
+<!-- BIG FEATURE CARDS -->
+<div class="big-features">
+  <div class="big-card" style="animation-delay:0.1s;">
+    <div class="bc-icon-wrap" style="background:linear-gradient(135deg,#0a2818,#1a4a2a)">💰</div>
+    <div class="bc-content">
+      <div class="bc-label">ECONOMY SYSTEM</div>
+      <div class="bc-title">VAULTCOIN REWARDS</div>
+      <div class="bc-desc">Every win, every challenge, every milestone — earns you VaultCoins. Spend them on exclusive skins, power-ups, tournament entries, and premium game passes. The more you play, the richer your vault grows.</div>
+      <div class="bc-tags"><span class="bc-tag">Earn by winning</span><span class="bc-tag">Spend on skins</span><span class="bc-tag">Tournament buy-ins</span><span class="bc-tag">Daily bonuses</span></div>
+    </div>
+  </div>
+  <div class="big-card" style="animation-delay:0.2s;">
+    <div class="bc-icon-wrap" style="background:linear-gradient(135deg,#1a0a28,#2a1a4a)">🏆</div>
+    <div class="bc-content">
+      <div class="bc-label">COMPETITION</div>
+      <div class="bc-title">GLOBAL TOURNAMENTS</div>
+      <div class="bc-desc">Weekly and monthly tournaments across all game genres. Compete against players worldwide for massive VaultCoin prize pools. Rank up from Bronze Viper to the legendary Diamond Vault rank.</div>
+      <div class="bc-tags"><span class="bc-tag">Weekly events</span><span class="bc-tag">Ranked mode</span><span class="bc-tag">Prize pools</span><span class="bc-tag">Live brackets</span></div>
+    </div>
+  </div>
+  <div class="big-card" style="animation-delay:0.3s;">
+    <div class="bc-icon-wrap" style="background:linear-gradient(135deg,#281a0a,#4a2a1a)">🎯</div>
+    <div class="bc-content">
+      <div class="bc-label">PERSONALISATION</div>
+      <div class="bc-title">AI GAME MATCHING</div>
+      <div class="bc-desc">Our preference quiz analyses your gaming style, session length, genre taste, and skill level. Then it curates a personalised game library just for you — so you never waste time on games that aren't your style.</div>
+      <div class="bc-tags"><span class="bc-tag">Style quiz</span><span class="bc-tag">Smart recommendations</span><span class="bc-tag">Adaptive difficulty</span></div>
+    </div>
+  </div>
+  <div class="big-card" style="animation-delay:0.4s;">
+    <div class="bc-icon-wrap" style="background:linear-gradient(135deg,#0a1628,#1a2a4a)">🛡️</div>
+    <div class="bc-content">
+      <div class="bc-label">SAFETY & FAIRNESS</div>
+      <div class="bc-title">ADVANCED ANTI-CHEAT</div>
+      <div class="bc-desc">VenomVault uses enterprise-grade anti-cheat technology that operates in real time. Suspicious patterns are flagged instantly and reviewed. Fair play isn't a policy here — it's a promise.</div>
+      <div class="bc-tags"><span class="bc-tag">Real-time monitoring</span><span class="bc-tag">Auto-ban system</span><span class="bc-tag">Fair matchmaking</span><span class="bc-tag">Report system</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- VaultCoin Ways -->
+<div class="coin-section">
+  <div class="coin-card">
+    <div class="cc-left">
+      <h2>💰 EARN VAULTCOINS</h2>
+      <p>VaultCoins are VenomVault's in-platform currency. Earn them for every action you take — from winning matches to inviting friends. They never expire and can be used across all platform features.</p>
+    </div>
+    <div class="cc-ways">
+      <div class="cc-way"><div class="cc-way-icon">🏆</div><div class="cc-way-text">Win a match</div><div class="cc-way-coins">+100-250</div></div>
+      <div class="cc-way"><div class="cc-way-icon">📅</div><div class="cc-way-text">Daily login</div><div class="cc-way-coins">+50</div></div>
+      <div class="cc-way"><div class="cc-way-icon">⭐</div><div class="cc-way-text">Leave a review</div><div class="cc-way-coins">+25</div></div>
+      <div class="cc-way"><div class="cc-way-icon">👥</div><div class="cc-way-text">Refer a friend</div><div class="cc-way-coins">+500</div></div>
+      <div class="cc-way"><div class="cc-way-icon">🏅</div><div class="cc-way-text">Complete achievement</div><div class="cc-way-coins">+200</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- Small feature grid -->
+<div class="features-grid">
+  <h2 class="fg-title">MORE <span>FEATURES</span></h2>
+  <div class="fg-grid">
+    <div class="fg-card"><span class="fg-icon">🌍</span><div class="fg-name">CROSS-PLATFORM</div><div class="fg-text">Play on PC, mobile, or tablet. Your progress and coins sync everywhere.</div></div>
+    <div class="fg-card"><span class="fg-icon">💬</span><div class="fg-name">LIVE CHAT</div><div class="fg-text">Built-in game chat and global community channels. Make friends, find squads.</div></div>
+    <div class="fg-card"><span class="fg-icon">🎨</span><div class="fg-name">CUSTOM PROFILES</div><div class="fg-text">Personalise your Vault profile with avatars, banners, and earned badges.</div></div>
+    <div class="fg-card"><span class="fg-icon">📊</span><div class="fg-name">STATS TRACKER</div><div class="fg-text">Detailed match history, win rates, and performance analytics per game.</div></div>
+    <div class="fg-card"><span class="fg-icon">🔔</span><div class="fg-name">SMART ALERTS</div><div class="fg-text">Get notified about tournaments, friend activity, and special events in real time.</div></div>
+    <div class="fg-card"><span class="fg-icon">🎁</span><div class="fg-name">DAILY REWARDS</div><div class="fg-text">Log in every day to claim escalating VaultCoin bonuses and mystery loot boxes.</div></div>
+    <div class="fg-card"><span class="fg-icon">🔒</span><div class="fg-name">SECURE VAULT</div><div class="fg-text">Two-factor authentication and encrypted data storage. Your account is fortress-grade.</div></div>
+    <div class="fg-card"><span class="fg-icon">🌐</span><div class="fg-name">LOW LATENCY</div><div class="fg-text">Global server network ensures under 30ms ping for online multiplayer matches.</div></div>
+  </div>
+</div>
+
+<!-- Stats bar -->
+<div class="stats-section">
+  <div class="ss-item"><div class="ss-val">48+</div><div class="ss-label">GAMES AVAILABLE</div></div>
+  <div class="ss-item"><div class="ss-val">1.2M+</div><div class="ss-label">ACTIVE PLAYERS</div></div>
+  <div class="ss-item"><div class="ss-val">99.9%</div><div class="ss-label">SERVER UPTIME</div></div>
+  <div class="ss-item"><div class="ss-val">52M+</div><div class="ss-label">COINS AWARDED</div></div>
+</div>
+
+<footer>
+  <div class="f-logo">🎮 VENOM<span style="color:#fff">VAULT</span></div>
+  <a href="home.html">Home</a><a href="games.html">Games</a><a href="contact.html">Contact</a>
+  <div style="margin-top:12px;">© 2025 VenomVault Gaming Platform</div>
+</footer>
+</body>
+</html>

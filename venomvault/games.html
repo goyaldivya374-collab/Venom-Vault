@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VenomVault – Games</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/games.css">
+</head>
+<body>
+
+<!-- ── NAVBAR ── -->
+<nav>
+  <a href="home.html" class="nav-logo">🎮 Venom<span>Vault</span></a>
+  <div class="nav-right">
+    <div class="coin-display">💰 <span id="coinVal">2,450</span></div>
+    <a href="home.html" class="back-btn">← Home</a>
+  </div>
+</nav>
+
+<!-- ── QUIZ SCREEN ── -->
+<div id="quizScreen">
+  <div class="quiz-card">
+    <div class="quiz-header">
+      <div class="quiz-step" id="qStep">STEP 1 OF 3</div>
+      <div class="quiz-q" id="qQuestion">WHAT IS YOUR GAMING STYLE?</div>
+      <div class="quiz-sub" id="qSub">Choose what describes you best</div>
+    </div>
+    <div class="progress-track">
+      <div class="progress-active" id="qProgress" style="width:33%"></div>
+    </div>
+    <div class="options-grid" id="optGrid"></div>
+  </div>
+</div>
+
+<!-- ── GAME SCREEN ── -->
+<div id="gameScreen">
+  <div class="game-hero">
+    <div class="game-hero-badge">🎯 YOUR PERSONALISED VAULT</div>
+    <div class="game-hero-title">GAMES FOR YOU</div>
+    <div class="game-hero-sub">Handpicked based on your gaming profile — click any game to play!</div>
+  </div>
+  <div class="games-container">
+    <div class="games-grid" id="gamesGrid"></div>
+
+    <!-- Leaderboard -->
+    <div class="leaderboard">
+      <div class="lb-title">🏆 TOP PLAYERS THIS WEEK</div>
+      <div class="lb-row">
+        <div class="lb-rank gold">🥇</div>
+        <div class="lb-avatar">🦅</div>
+        <div class="lb-name">VaultKing_X</div>
+        <div class="lb-coins">48,250 VC</div>
+      </div>
+      <div class="lb-row">
+        <div class="lb-rank silver">🥈</div>
+        <div class="lb-avatar">🐉</div>
+        <div class="lb-name">ShadowViper</div>
+        <div class="lb-coins">41,100 VC</div>
+      </div>
+      <div class="lb-row">
+        <div class="lb-rank bronze">🥉</div>
+        <div class="lb-avatar">🐺</div>
+        <div class="lb-name">NeonStriker</div>
+        <div class="lb-coins">38,750 VC</div>
+      </div>
+      <div class="lb-row">
+        <div class="lb-rank" style="color:var(--text)">4</div>
+        <div class="lb-avatar">🦊</div>
+        <div class="lb-name">QuantumRacer</div>
+        <div class="lb-coins">32,400 VC</div>
+      </div>
+      <div class="lb-row">
+        <div class="lb-rank" style="color:var(--text)">5</div>
+        <div class="lb-avatar">🎯</div>
+        <div class="lb-name">DarkPhoenix</div>
+        <div class="lb-coins">27,900 VC</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── RULES MODAL ── -->
+<div class="rule-modal" id="ruleModal">
+  <div class="rule-content">
+    <div class="rule-header">
+      <div class="rule-title" id="ruleTitle">HOW TO PLAY</div>
+      <button class="rule-close" onclick="closeRules()">✕</button>
+    </div>
+    <div class="rule-video" id="ruleVideo" style="background:linear-gradient(135deg,#0a1628,#1a0a28)">
+      <div class="rule-icon" id="ruleIcon">🎮</div>
+      <div class="rule-text" id="ruleText">HOW TO PLAY</div>
+    </div>
+    <div class="rule-progress">
+      <div class="rule-prog-fill" id="ruleProgFill"></div>
+    </div>
+    <div class="rule-body">
+      <ul class="rule-list" id="rulesList"></ul>
+    </div>
+    <div class="rule-footer">
+      <button class="btn-play-now" onclick="playFromRules()">▶ PLAY NOW</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── PLAY GAME MODAL ── -->
+<div class="play-modal" id="playModal">
+  <div class="play-content">
+    <div class="play-header">
+      <div class="play-header-title" id="playTitle">▶ NOW PLAYING</div>
+      <button class="play-close" onclick="closeGame()">✕</button>
+    </div>
+    <div class="game-canvas-area" id="gameCanvasArea">
+      <!-- Game canvas injected here by JS -->
+    </div>
+  </div>
+</div>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="f-logo">🎮 VENOM<span style="color:#fff">VAULT</span></div>
+  <a href="home.html">Home</a>
+  <a href="trailer.html">Trailers</a>
+  <a href="contact.html">Contact</a>
+  <div style="margin-top:12px;">© 2025 VenomVault Gaming Platform</div>
+</footer>
+
+<script src="js/games.js"></script>
+</body>
+</html>
